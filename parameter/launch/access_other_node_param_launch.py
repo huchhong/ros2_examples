@@ -11,9 +11,16 @@ def generate_launch_description():
         launch_ros.actions.Node(
             package="param_test",
             node_executable="set_and_get_parameters",
-            node_name="set_get_parameters",
+            node_name="set_and_get_parameters",
             node_namespace="robot1",
             output="screen",
             parameters=[{'map_file': map_yaml_file}]
+        ),
+        launch_ros.actions.Node(
+            package="param_test",
+            node_executable="access_other_node_parameters",
+            node_name="access_other_node_parameters",
+            node_namespace="robot1",
+            output="screen",
         )
     ])

@@ -15,9 +15,10 @@ int main(int argc, char** argv)
     rclcpp::init(argc, argv);
 
     auto node = rclcpp::Node::make_shared("access_other_node_parameters");
+    RCLCPP_INFO(node->get_logger(), "access parameters of other node");
 
     auto parameters_client = std::make_shared<rclcpp::SyncParametersClient>(node, "set_and_get_parameters");
-    while (!parameters_client->wait_for_service(10s)) {
+    while (!parameters_client->wait_for_service(3s)) {
         if (rclcpp::ok()) {
             RCLCPP_ERROR(node->get_logger(), "Interrupted while waiting for the service. Existing.");
             return 0;
@@ -26,7 +27,7 @@ int main(int argc, char** argv)
     }
 
     std::stringstream ss;
-    for (auto& parameter: parameters_client->get_parameters({"foo", "baz", "bar", "foobar"})) {
+    for (auto& parameter: parameters_client->get_parameters({"foo", "baz", "bar", "foobar", "map_file", "non_exist"})) {
         ss << "\nParameter name: " << parameter.get_name();
         ss << "\nParameter value (" << parameter.get_type_name() << "): " << 
             parameter.value_to_string();

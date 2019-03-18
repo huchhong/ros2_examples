@@ -2,5 +2,6 @@
 
 ## access parameters of other node
 
-- access_other_node_parameters.cpp shows how to access parameters of other node.
-- test_launch shows parameter setting in launch file
+- access_other_node_parameters.cpp
+- set_and_get_parameters.cpp
+- access_other_node_param_launch.py
