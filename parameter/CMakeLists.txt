@@ -14,16 +14,20 @@ include_directories(
 
 add_executable(set_and_get_parameters src/set_and_get_parameters.cpp)
 add_executable(access_other_node_parameters src/access_other_node_parameters.cpp)
+add_executable(stub_node src/stub_node.cpp)
 
 set(dependencies
-    rclcpp)
+    rclcpp
+    nav2_dynamic_params)
 
 ament_target_dependencies(set_and_get_parameters
     ${dependencies})
 ament_target_dependencies(access_other_node_parameters
     ${dependencies})
+ament_target_dependencies(stub_node
+    ${dependencies})
 
-install(TARGETS set_and_get_parameters access_other_node_parameters
+install(TARGETS set_and_get_parameters access_other_node_parameters stub_node
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION lib/${PROJECT_NAME})

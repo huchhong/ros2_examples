@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 
     auto parameters_client = std::make_shared<rclcpp::SyncParametersClient>(node);
     while (!parameters_client->wait_for_service(1s)) {
-        if (rclcpp::ok()) {
+        if (!rclcpp::ok()) {
             RCLCPP_ERROR(node->get_logger(), "Interrupted while waiting for the service. Existing.");
             return 0;
         }
