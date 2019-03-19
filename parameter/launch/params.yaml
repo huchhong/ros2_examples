@@ -1,0 +1,6 @@
+dynamic_params_client:
+  ros__parameters:
+    aaa: 10
+    bbb: 20
+    ccc: 30
+    ddd: 40
