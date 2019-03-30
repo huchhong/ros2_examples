@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>param_test</name>
+  <name>service_test</name>
   <version>0.0.1</version>
   <description>
-    parameter test
+    service test
   </description>
 
   <maintainer email="huchaohong@gmail.com">huchaohong</maintainer>
@@ -12,7 +12,6 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>rclcpp</depend>
-  <!--<depend>nav2_dynamic_params</depend>-->
 
   <export>
     <build_type>ament_cmake</build_type>

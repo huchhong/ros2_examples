@@ -18,13 +18,16 @@ int main(int argc, char** argv)
     RCLCPP_INFO(node->get_logger(), "access parameters of other node");
 
     auto parameters_client = std::make_shared<rclcpp::SyncParametersClient>(node, "set_and_get_parameters");
-    while (!parameters_client->wait_for_service(3s)) {
+    auto start = node->now();
+    while (!parameters_client->wait_for_service(10s)) {
         if (!rclcpp::ok()) {
             RCLCPP_ERROR(node->get_logger(), "Interrupted while waiting for the service. Existing.");
             return 0;
         }
         RCLCPP_INFO(node->get_logger(), "service not available, waiting again...");
     }
+    auto end = node->now();
+    RCLCPP_INFO(node->get_logger(), "waitting time: %f", (end-start).seconds());
 
     std::stringstream ss;
     for (auto& parameter: parameters_client->get_parameters({"foo", "baz", "bar", "foobar", "map_file", "non_exist"})) {
